@@ -4,7 +4,6 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-  Outlet
 } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -17,7 +16,6 @@ import About from "./pages/About";
 import Support from "./pages/Support";
 import Cart from "./pages/Cart";
 import Calender from "./pages/Calenders";
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,6 +40,5 @@ function App() {
     </>
   );
 }
-
 
 export default App;

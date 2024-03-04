@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 export default function Footer() {
   return (
     <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 2 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2 }}
     >
       <Box
         color={useColorModeValue("gray.700", "gray.200")}

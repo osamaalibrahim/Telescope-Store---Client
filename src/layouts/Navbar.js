@@ -2,7 +2,6 @@ import React from "react";
 import {
   Box,
   Flex,
-  Text,
   IconButton,
   useDisclosure,
   Drawer,
@@ -11,9 +10,7 @@ import {
   DrawerCloseButton,
   DrawerBody,
   VStack,
-  Button,
   Divider,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -29,8 +26,6 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAuth, logout } = useAuth();
 
-
-  // Function to handle the sign out button and delete the access token from local storage
   const handleSignOut = () => {
     axios.get("http://localhost:3001/auth/logout");
     toast.success("Logged out successfully!");
@@ -69,19 +64,10 @@ const Navbar = () => {
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <Flex
-        px={4}
-        py={3}
-        align="center"
-        justify="space-between"
-        //justifyContent="flex-end"
-      >
-        {/* <Text fontSize="2xl" fontFamily="Serif">
-          BrightStar
-        </Text> */}
+      <Flex px={4} py={3} align="center" justify="space-between">
         <Avatar src={brightstar} size="lg" bg={"#000000"} />
         <IconButton
-          display={{ base: "flex",  xl: "none" }}
+          display={{ base: "flex", xl: "none" }}
           onClick={onOpen}
           icon={<HamburgerIcon />}
           variant="outline"
@@ -144,7 +130,7 @@ const Navbar = () => {
           </DrawerContent>
         </Drawer>
         <Flex
-          display={{ base: "none",  xl: "flex" }}
+          display={{ base: "none", xl: "flex" }}
           justify="center"
           alignItems="center"
           ml="auto"
@@ -163,7 +149,6 @@ const Navbar = () => {
               <NavBarButton link="/" onClick={handleSignOut} text="Sign Out" />
             </>
           ) : (
-            // If the user is not authenticated, display the "Sign In" and "Sign Up" buttons
             <>
               <NavBarButton link="/login" text="Sign In" />
               <NavBarButton link="/register" text="Sign Up" />

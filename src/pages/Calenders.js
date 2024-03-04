@@ -31,12 +31,7 @@ function Calender() {
           Events!
         </Text>
       </Heading>
-      <Flex
-        direction="row"
-        wrap="wrap"
-        justify="center"
-        align="center"
-      >
+      <Flex direction="row" wrap="wrap" justify="center" align="center">
         {CalenderList.map((calender, index) => {
           // Assuming calender.id is a unique identifier for each calender
           return (

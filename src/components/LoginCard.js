@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import FormControlWithLeftIcon from "./FormControl";
 import { VscAccount, VscLockSmall, VscMail } from "react-icons/vsc";
-import telescopeImage from '../images/telescope.jpg'
+import telescopeImage from "../images/telescope.jpg";
 import {
   Box,
   Button,
@@ -52,11 +52,7 @@ function LoginCard(props) {
                 borderRadius={8}
                 boxShadow="dark-lg"
               >
-                <Image
-                  objectFit="cover"
-                  maxW="100%"
-                  src={telescopeImage}
-                />
+                <Image objectFit="cover" maxW="100%" src={telescopeImage} />
                 <CardBody>
                   <form onSubmit={props.handleSubmit}>
                     <Stack spacing="4">

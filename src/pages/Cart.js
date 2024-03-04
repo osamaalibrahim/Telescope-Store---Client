@@ -1,14 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useShop } from "../contexts/ShopContext";
-import {
-  Box,
-  Stack,
-  Heading,
-  Flex,
-  HStack,
-  Link,
-  Divider,
-} from "@chakra-ui/react";
+import { Box, Stack, Heading, Flex, HStack, Link } from "@chakra-ui/react";
 import { CartItem } from "../components/CartItem";
 import { CartOrderSummary } from "../components/CartOrderSummary";
 import { motion } from "framer-motion";
@@ -29,9 +21,8 @@ function Cart() {
   useEffect(() => {
     fetchCartItems();
     fetchProducts();
-  }, []); // Empty dependency array to run the effect only once when the component mounts
+  }, []);
 
-  //write a function to get the products from cartItems
   const productsInCart = cartItems.map((item) => {
     const product = products.find((product) => product.id === item.productId);
     return {
@@ -43,7 +34,6 @@ function Cart() {
     };
   });
 
-  //write a function to get the total price of the products in the cart
   const totalPrice = productsInCart
     .reduce((total, product) => total + product.price * product.quantity, 0)
     .toFixed(2);

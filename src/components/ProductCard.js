@@ -1,13 +1,11 @@
 import {
   Box,
   Center,
-  useColorModeValue,
   Heading,
   Text,
   Stack,
   Image,
   Button,
-  ButtonGroup,
   Divider,
   Card,
   CardBody,
@@ -25,14 +23,14 @@ export default function ProductCard(props) {
       transition={{ duration: 2 }}
     >
       <Center p={8}>
-        <Card w={{ base: "100%",md: "400px", sm: "200px" }}>
-          <CardBody>
+        <Card w={{ base: "100%", md: "400px", sm: "200px" }}>
+          <CardBody align="center">
             <Image
               src={IMAGE}
               alt="Product Image"
               borderRadius="lg"
-              maxW={{ base: "100%", sm: "300px" }}
-              maxH="300px" // Adjust the max height according to your needs
+              maxW={{ base: "100%", sm: "150%" }}
+              maxH="300px"
               objectFit="cover"
             />
             <Stack mt="6" align="center">

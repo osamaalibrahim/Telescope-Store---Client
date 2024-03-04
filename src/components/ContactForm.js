@@ -15,7 +15,7 @@ import {
   InputLeftElement,
   Textarea,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { MdPhone, MdEmail, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
@@ -30,7 +30,7 @@ function infoButton({ text, link, icon }) {
     <Button
       size="md"
       height="48px"
-      width="200px"
+      width="300px"
       variant="ghost"
       _hover={{ border: "2px solid #1C6FEB" }}
       leftIcon={icon}
@@ -60,7 +60,7 @@ export default function Contactform(props) {
       >
         <Flex>
           <Box
-            bg={useColorModeValue('gray.50', 'gray.900')}
+            bg={useColorModeValue("gray.50", "gray.900")}
             borderRadius="lg"
             m={{ sm: 4, md: 16, lg: 10 }}
             p={{ sm: 5, md: 5, lg: 16 }}
@@ -69,40 +69,40 @@ export default function Contactform(props) {
               <Wrap spacing={{ base: 10, sm: 3, md: 5, lg: 20 }}>
                 <WrapItem mx={10}>
                   <Box>
-                  <VStack pl={0} spacing={3} justifyContent={"center"}>
-                    <Heading
-                      fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
-                      fontFamily={"Tajawal"}
-                    >
-                      Contact Us
-                    </Heading>
-                    <Text
-                      mt={{ sm: 3, md: 3, lg: 5 }}
-                      fontSize={{ base: "xl", sm: "2xl", lg: "3xl" }}
-                      fontFamily={"Tajawal"}
-                      align={"center"}
-                    >
-                      Please Fill this form to contact us
-                    </Text>
-                    <Box py={{ base: 5, sm: 5, md: 8, lg: 10 }}>
-                      <VStack pl={0} spacing={3} justifyContent={"center"}>
-                        {infoButton({
-                          text: "+966 50 153 3551",
-                          link: "tel:+966501533551",
-                          icon: <MdPhone size="20px" />,
-                        })}
-                        {infoButton({
-                          text: "Brightstar@gmail.com",
-                          link: "mailto:brightstar@gmail.com",
-                          icon: <MdEmail size="20px" />,
-                        })}
-                        {infoButton({
-                          text: "Saudi Arabia - Daharan",
-                          link: "https://goo.gl/maps/N4mZwuKpy2nrzHZBA",
-                          icon: <MdLocationOn size="20px" />,
-                        })}
-                      </VStack>
-                    </Box>
+                    <VStack pl={0} spacing={3} justifyContent={"center"}>
+                      <Heading
+                        fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
+                        fontFamily={"Tajawal"}
+                      >
+                        Contact Us
+                      </Heading>
+                      <Text
+                        mt={{ sm: 3, md: 3, lg: 5 }}
+                        fontSize={{ base: "xl", sm: "2xl", lg: "3xl" }}
+                        fontFamily={"Tajawal"}
+                        align={"center"}
+                      >
+                        Please Fill this form to contact us
+                      </Text>
+                      <Box py={{ base: 5, sm: 5, md: 8, lg: 10 }}>
+                        <VStack pl={0} spacing={3} justifyContent={"center"}>
+                          {infoButton({
+                            text: "+966 50 153 3551",
+                            link: "tel:+966501533551",
+                            icon: <MdPhone size="20px" />,
+                          })}
+                          {infoButton({
+                            text: "Brightstar.saudi@gmail.com",
+                            link: "mailto:brightstar.saudi@gmail.com",
+                            icon: <MdEmail size="20px" />,
+                          })}
+                          {infoButton({
+                            text: "Saudi Arabia - Daharan",
+                            link: "https://goo.gl/maps/N4mZwuKpy2nrzHZBA",
+                            icon: <MdLocationOn size="20px" />,
+                          })}
+                        </VStack>
+                      </Box>
                     </VStack>
                   </Box>
                 </WrapItem>
@@ -126,10 +126,6 @@ export default function Contactform(props) {
                                 size="md"
                                 value={props.name}
                                 onChange={(e) => props.setName(e.target.value)}
-                                // onInvalid={(F) =>
-                                //   F.target.setCustomValidity("الرجاء إدخال الاسم")
-                                // }
-                                // onInput={(F) => F.target.setCustomValidity("")}
                               />
                             </InputGroup>
                           </FormControl>
@@ -148,12 +144,6 @@ export default function Contactform(props) {
                                 size="md"
                                 value={props.email}
                                 onChange={(e) => props.setEmail(e.target.value)}
-                                // onInvalid={(F) =>
-                                //   F.target.setCustomValidity(
-                                //     "الرجاء إدخال ايميل صحيح"
-                                //   )
-                                // }
-                                // onInput={(F) => F.target.setCustomValidity("")}
                               />
                             </InputGroup>
                           </FormControl>
@@ -168,10 +158,6 @@ export default function Contactform(props) {
                               }}
                               value={props.text}
                               onChange={(e) => props.setText(e.target.value)}
-                              //   onInvalid={(F) =>
-                              //     F.target.setCustomValidity("الرجاء كتابة الرسالة")
-                              //   }
-                              //   onInput={(F) => F.target.setCustomValidity("")}
                             />
                           </FormControl>
                           <Button

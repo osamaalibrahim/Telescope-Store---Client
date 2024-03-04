@@ -1,13 +1,11 @@
 import {
   Box,
   Center,
-  useColorModeValue,
   Heading,
   Text,
   Stack,
   Image,
   Button,
-  ButtonGroup,
   Divider,
   Card,
   CardBody,
@@ -23,10 +21,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { format, compareAsc } from "date-fns";
-import { useEffect } from "react";
+import { format } from "date-fns";
 import { useGathering } from "../contexts/GatheringContext";
-import {CheckIcon} from "@chakra-ui/icons";
+import { CheckIcon } from "@chakra-ui/icons";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function EventCard(props) {
@@ -39,7 +36,11 @@ export default function EventCard(props) {
       transition={{ duration: 2 }}
     >
       <Center p={8}>
-        <Card direction={{ base: "column", sm: "row" }} overflow="hidden" w={{ base: "100%", sm: "1000px" }}>
+        <Card
+          direction={{ base: "column", sm: "row" }}
+          overflow="hidden"
+          w={{ base: "100%", sm: "1000px" }}
+        >
           <Image
             objectFit="cover"
             maxW={{ base: "150%", sm: "300px" }}
@@ -70,32 +71,13 @@ export default function EventCard(props) {
                   </Text>
                 </Box>
                 <Box>
-                  {/* {props.isEnrolled && (
-                    <Text color="green.600" fontSize="md" mr={2}>
-                      Enrolled
-                    </Text>
-                  )}
-                  {props.gathering && (
-                    <Button
-                      colorScheme="blue"
-                      size="md"
-                      onClick={props.handleEnroll}
-                    >
-                      Enroll
-                    </Button>
-                  )} */}
-
                   {props.gathering &&
                     (props.isEnrolled && isAuth ? (
                       <Stack>
                         <Text color="green.600" fontSize="md" mr={1}>
                           Enrolled <CheckIcon />
                         </Text>
-                        <Button
-                          //colorScheme="blue"
-                          size="md"
-                          onClick={props.handleUnenroll}
-                        >
+                        <Button size="md" onClick={props.handleUnenroll}>
                           Cancel
                         </Button>
                       </Stack>

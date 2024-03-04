@@ -1,11 +1,6 @@
 import {
-  CloseButton,
   Flex,
-  Select,
-  SelectProps,
-  useColorModeValue,
   IconButton,
-  Text,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -14,20 +9,16 @@ import {
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { CartProductMeta } from "./CartProductMeta";
-import { motion } from "framer-motion";
 
 export const CartItem = (props) => {
   const {
-    isGiftWrapping,
     name,
     description,
     quantity,
     image,
-    currency,
     price,
     onChangeQuantity,
     onClickDelete,
-    updatedPrice,
   } = props;
 
   const QuantitySelect = ({ value, onChange, onChangeQuantity, ...props }) => {
@@ -61,7 +52,6 @@ export const CartItem = (props) => {
         description={description}
         image={image}
         price={price}
-        //isGiftWrapping={isGiftWrapping}
       />
 
       {/* Desktop */}
@@ -77,13 +67,11 @@ export const CartItem = (props) => {
           }}
         />
 
-        {/* <PriceTag price={price} currency={currency} /> */}
-        {/* <DeleteIcon
-        as={IconButton}
+        <IconButton
+          icon={<DeleteIcon />}
           aria-label={`Delete ${name} from cart`}
           onClick={onClickDelete}
-        /> */}
-        <IconButton icon={<DeleteIcon />} aria-label={`Delete ${name} from cart`} onClick={onClickDelete} />
+        />
       </Flex>
 
       {/* Mobile */}
@@ -106,8 +94,6 @@ export const CartItem = (props) => {
             onChangeQuantity?.(value);
           }}
         />
-
-        {/* <PriceTag price={price} currency={currency} /> */}
       </Flex>
     </Flex>
   );

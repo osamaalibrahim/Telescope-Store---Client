@@ -26,7 +26,7 @@ function Login() {
         password,
       })
       .then((response) => {
-       const { accessToken } = response.data;
+        const { accessToken } = response.data;
         localStorage.setItem("accessToken", accessToken);
         login(accessToken);
         toast.success("Logged in successfully!");

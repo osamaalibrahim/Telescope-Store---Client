@@ -8,11 +8,7 @@ import {
   Button,
   Image,
   Icon,
-  IconButton,
-  createIcon,
-  IconProps,
   useColorModeValue,
-  Link,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -118,9 +114,7 @@ export default function CallToActionWithVideo() {
                 align={"center"}
                 w={"100%"}
                 h={"100%"}
-                src={
-                  telescope2
-                }
+                src={telescope2}
               />
             </Box>
           </Flex>
@@ -129,7 +123,6 @@ export default function CallToActionWithVideo() {
     </motion.div>
   );
 }
-
 
 const Blob = (props) => {
   return (

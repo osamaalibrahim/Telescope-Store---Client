@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Animation from "../components/Animation";
 import ProductCard from "../components/ProductCard";
 import { Flex, Box, Heading, Text, Stack } from "@chakra-ui/react";
-import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
 import { useShop } from "../contexts/ShopContext";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 function Store() {
-  //const [productList, setProductList] = useState([]);
   const { isAuth } = useAuth();
   const { addToCart, products, fetchProducts } = useShop();
 
@@ -26,7 +24,7 @@ function Store() {
   }, []);
 
   return (
-    <Stack spacing={8} align="center" py={{ base: 20, md: 28 }} >
+    <Stack spacing={8} align="center" py={{ base: 20, md: 28 }}>
       <Heading
         fontWeight={600}
         fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
@@ -43,7 +41,7 @@ function Store() {
         {products.map((product, index) => {
           // Assuming product.id is a unique identifier for each product
           return (
-            <Box m={4} key={product.id} >
+            <Box m={4} key={product.id}>
               <Animation
                 component={
                   <ProductCard

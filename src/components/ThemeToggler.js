@@ -10,7 +10,7 @@ export default function ThemeToggler() {
       animate={{ rotate: [0, 360, 360, 0] }}
       transition={{ duration: 2 }}
     >
-      <Box textAlign="center" >
+      <Box textAlign="center">
         <IconButton
           icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           onClick={toggleColorMode}

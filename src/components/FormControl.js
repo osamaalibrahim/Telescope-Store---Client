@@ -1,5 +1,12 @@
 import React from "react";
-import { FormControl, FormLabel, Input, InputGroup, InputLeftElement, Icon } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Icon,
+} from "@chakra-ui/react";
 
 function FormControlWithLeftIcon(props) {
   return (

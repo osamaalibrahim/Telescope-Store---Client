@@ -1,12 +1,9 @@
 import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
 
-// Create the ShopContext
 const ShopContext = createContext();
 
-// Create the ShopProvider component
 export const ShopProvider = ({ children }) => {
-  // State for the cart items
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -21,7 +18,6 @@ export const ShopProvider = ({ children }) => {
       });
   };
 
-  // fetch the cart items from the server
   const fetchCartItems = () => {
     axios
       .get("http://localhost:3001/auth/cart", {
@@ -37,7 +33,6 @@ export const ShopProvider = ({ children }) => {
       });
   };
 
-  // Function to add an item to the cart
   const addToCart = (item) => {
     const itemId = item.id;
     if (cartItems.some((cartItem) => cartItem.productId === itemId)) {
@@ -66,9 +61,7 @@ export const ShopProvider = ({ children }) => {
       });
   };
 
-  // Function to remove an item from the cart
   const removeFromCart = (item) => {
-    // setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
     axios
       .delete(`http://localhost:3001/auth/cart/${item.id}`, {
         headers: {
@@ -83,7 +76,6 @@ export const ShopProvider = ({ children }) => {
       });
   };
 
-  // function to update the quantity of an item in the cart
   const updateQuantity = (productId, newQuantity) => {
     axios
       .put(
@@ -96,7 +88,6 @@ export const ShopProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        // Update the quantity of the item in the cartItems state
         setCartItems((prevCartItems) =>
           prevCartItems.map((item) =>
             item.id === productId ? { ...item, quantity: newQuantity } : item
@@ -109,29 +100,21 @@ export const ShopProvider = ({ children }) => {
       });
   };
 
-    // clear the cart
-    const clearCart = () => {
-        axios
-            .delete("http://localhost:3001/auth/cart", {
-            headers: {
-                accessToken: localStorage.getItem("accessToken"),
-            },
-            })
-            .then((response) => {
-            setCartItems([]);
-            })
-            .catch((error) => {
-            console.error("There was an error!", error);
-            });
-        };
-
-
-  // Value object to be passed to consumers of the ShopContext
-  //   const value = {
-  //     cartItems,
-  //     addToCart,
-  //     removeFromCart,
-  //   };
+  // clear the cart
+  const clearCart = () => {
+    axios
+      .delete("http://localhost:3001/auth/cart", {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        setCartItems([]);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  };
 
   return (
     <ShopContext.Provider

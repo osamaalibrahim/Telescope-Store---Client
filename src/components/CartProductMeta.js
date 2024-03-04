@@ -1,16 +1,13 @@
 import {
   Box,
-  HStack,
-  Icon,
   Image,
-  Link,
   Stack,
   Text,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 
 export const CartProductMeta = (props) => {
-  const {price, image, name, description } = props;
+  const { price, image, name, description } = props;
   const IMAGE = require(`../images/${image}`);
   return (
     <Stack direction="row" spacing="5" width="full">

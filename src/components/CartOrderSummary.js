@@ -1,12 +1,4 @@
-import {
-  Button,
-  Flex,
-  Heading,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue as mode,
-} from "@chakra-ui/react";
+import { Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
 import { useDisclosure } from "@chakra-ui/react";
 import React from "react";

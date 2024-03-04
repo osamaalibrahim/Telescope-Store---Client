@@ -3,7 +3,6 @@
 import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import {useAuth} from "../contexts/AuthContext";
 
 const GatheringContext = createContext();
 
@@ -11,7 +10,6 @@ export const GatheringContextProvider = ({ children }) => {
   const [gatherings, setGatherings] = useState([]);
   const [participants, setParticipants] = useState([]);
   const [userParticipations, setUserParticipations] = useState([]);
-    const {user} = useAuth();
 
   // Fetch all gatherings
   const fetchGatherings = () => {
@@ -24,7 +22,6 @@ export const GatheringContextProvider = ({ children }) => {
         console.error("There was an error fetching gatherings!", error);
       });
   };
-
 
   const fetchUserParticipations = () => {
     axios
@@ -39,7 +36,7 @@ export const GatheringContextProvider = ({ children }) => {
       .catch((error) => {
         console.error("There was an error fetching gatherings!", error);
       });
-  }
+  };
 
   // Fetch gathering participants
   const fetchParticipants = (gatheringId) => {
@@ -54,7 +51,6 @@ export const GatheringContextProvider = ({ children }) => {
   };
 
   const enroll = (gatheringId) => {
-
     axios
       .post(
         "http://localhost:3001/auth/enroll",
@@ -66,7 +62,6 @@ export const GatheringContextProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        // After successful enrollment, fetch participants again to update state
         toast.success("Enrolled successfully!");
         fetchParticipants(gatheringId);
         fetchUserParticipations();
@@ -85,7 +80,6 @@ export const GatheringContextProvider = ({ children }) => {
         },
       })
       .then((response) => {
-        // After successful unenrollment, fetch participants again to update state
         toast.success("Unenrolled successfully!");
         fetchParticipants(gatheringId);
         fetchUserParticipations();
@@ -93,7 +87,7 @@ export const GatheringContextProvider = ({ children }) => {
       .catch((error) => {
         console.error("There was an error unenrolling!", error);
       });
-  }
+  };
 
   return (
     <GatheringContext.Provider
@@ -105,7 +99,7 @@ export const GatheringContextProvider = ({ children }) => {
         enroll,
         fetchUserParticipations,
         userParticipations,
-        unenroll
+        unenroll,
       }}
     >
       {children}

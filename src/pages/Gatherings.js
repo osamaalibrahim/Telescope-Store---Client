@@ -1,5 +1,3 @@
-// Gatherings.js
-
 import React, { useEffect, useState } from "react";
 import Animation from "../components/Animation";
 import GatheringCard from "../components/EventCard";
@@ -45,7 +43,7 @@ function Gatherings() {
 
   return (
     <Stack spacing={8} align={"center"} py={{ base: 20, md: 28 }}>
-            <Heading
+      <Heading
         fontWeight={600}
         fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
         lineHeight={"110%"}
@@ -57,29 +55,29 @@ function Gatherings() {
           Gatherings!
         </Text>
       </Heading>
-    <Flex direction="row" wrap="wrap" justify="center" align="center">
-      {gatherings.map((gathering, index) => (
-        <Box m={4} key={gathering.id}>
-          <Animation
-            component={
-              <GatheringCard
-                gathering={true}
-                title={gathering.title}
-                description={gathering.description}
-                date={gathering.date}
-                image={gathering.image}
-                gatheringId={gathering.id}
-                handleEnroll={() => handleEnroll(gathering.id)}
-                handleUnenroll={() => handleUnenroll(gathering.id)}
-                isEnrolled={userParticipations.some(
-                  (p) => p.gatheringId === gathering.id
-                )}
-              />
-            }
-          />
-        </Box>
-      ))}
-    </Flex>
+      <Flex direction="row" wrap="wrap" justify="center" align="center">
+        {gatherings.map((gathering, index) => (
+          <Box m={4} key={gathering.id}>
+            <Animation
+              component={
+                <GatheringCard
+                  gathering={true}
+                  title={gathering.title}
+                  description={gathering.description}
+                  date={gathering.date}
+                  image={gathering.image}
+                  gatheringId={gathering.id}
+                  handleEnroll={() => handleEnroll(gathering.id)}
+                  handleUnenroll={() => handleUnenroll(gathering.id)}
+                  isEnrolled={userParticipations.some(
+                    (p) => p.gatheringId === gathering.id
+                  )}
+                />
+              }
+            />
+          </Box>
+        ))}
+      </Flex>
     </Stack>
   );
 }
