@@ -17,26 +17,26 @@ function Support() {
   };
 
   const sendMessage = async ({ name, email, text }) => {
-    axios
-      .post(`${api}/message`, {
+
+
+    try {
+      const response = await axios.post(`${api}/message`, {
         name,
         email,
         text,
-      })
-      .then((response) => {
-        toast.success("Message sent successfully! Please check your email.");
-        setName("");
-        setEmail("");
-        setText("");
-      })
-      .catch((error) => {
-        toast.error(
-          "There was an error sending your message. Please try again."
-        );
-        setName("");
-        setEmail("");
-        setText("");
       });
+      toast.success("Message sent successfully! Please check your email.");
+      setName("");
+      setEmail("");
+      setText("");
+    }catch (error) {
+      toast.error(
+        "There was an error sending your message. Please try again."
+      );
+      setName("");
+      setEmail("");
+      setText("");
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,  useCallback } from "react";
 import { useShop } from "../contexts/ShopContext";
 import { Box, Stack, Heading, Flex, HStack, Link } from "@chakra-ui/react";
 import { CartItem } from "../components/CartItem";
@@ -18,9 +18,12 @@ function Cart() {
 
   const { isAuth } = useAuth();
 
+  const updateData = useCallback(async () => {
+    await Promise.all([fetchCartItems(), fetchProducts()]);
+  }, [fetchCartItems, fetchProducts]);
+
   useEffect(() => {
-    fetchCartItems();
-    fetchProducts();
+    updateData();
   }, []);
 
   const productsInCart = cartItems.map((item) => {

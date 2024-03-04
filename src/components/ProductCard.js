@@ -13,9 +13,27 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { CheckIcon } from "@chakra-ui/icons";
+
 
 export default function ProductCard(props) {
   const IMAGE = require(`../images/${props.image}`);
+  const [loading, setLoading] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAddToCart = async (product) => {
+    setLoading(true); // Set loading to true before calling addToCart
+    try {
+      await props.onAddToCart(product);
+      setIsAdded(true);
+      setLoading(false); // Set loading back to false after addToCart completes
+    } catch (error) {
+      setLoading(false); // Make sure to handle errors and set loading back to false
+      console.error("Error adding to cart:", error);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -51,9 +69,17 @@ export default function ProductCard(props) {
                 </Text>
               </Box>
               <Box>
-                <Button colorScheme="blue" onClick={props.onAddToCart}>
-                  Add to Cart
-                </Button>
+                {isAdded || props.isAdded ? (
+                  <Text color="green.600">Added to cart <CheckIcon /></Text>
+                ) : (
+                  <Button
+                    disabled={loading}
+                    colorScheme="blue"
+                    onClick={handleAddToCart}
+                  >
+                    {loading ? "Adding to cart..." : "Add to Cart"}
+                  </Button>
+                )}
               </Box>
             </Flex>
           </CardFooter>

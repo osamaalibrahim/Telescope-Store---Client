@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Animation from "../components/Animation";
 import GatheringCard from "../components/EventCard";
 import { Flex, Box, Heading, Text, Stack } from "@chakra-ui/react";
@@ -16,30 +16,36 @@ function Gatherings() {
     userParticipations,
   } = useGathering();
   const { isAuth } = useAuth();
-  const [isEnrolled, setIsEnrolled] = useState(false);
 
-  const handleEnroll = (gatheringId) => {
+
+
+  const handleEnroll = async (gatheringId) => {
     if (isAuth) {
-      enroll(gatheringId);
-      setIsEnrolled(true);
+      await enroll(gatheringId);
+      await updateData();
+
     } else {
       toast.error("Please Sign in to enroll!");
     }
   };
 
-  const handleUnenroll = (gatheringId) => {
+  const handleUnenroll = async (gatheringId) => {
     if (isAuth) {
-      unenroll(gatheringId);
-      setIsEnrolled(false);
+      await unenroll(gatheringId);
+      await updateData();
+
     } else {
       toast.error("Please Sign in to unenroll!");
     }
   };
 
+  const updateData = useCallback(async () => {
+    await Promise.all([fetchGatherings(), fetchUserParticipations()]);
+  }, [fetchGatherings, fetchUserParticipations]);
+
   useEffect(() => {
-    fetchGatherings();
-    fetchUserParticipations();
-  }, [isEnrolled]);
+    updateData();
+  }, []);
 
   return (
     <Stack spacing={8} align={"center"} py={{ base: 20, md: 28 }}>

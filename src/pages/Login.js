@@ -20,24 +20,24 @@ function Login() {
   };
 
   const userLogin = async ({ email, password }) => {
-    axios
-      .post(`${api}/auth/login`, {
+
+    try {
+      const response = await axios.post(`${api}/auth/login`, {
         email,
         password,
-      })
-      .then((response) => {
-        const { accessToken } = response.data;
-        localStorage.setItem("accessToken", accessToken);
-        login(accessToken);
-        toast.success("Logged in successfully!");
-        setTimeout(() => {
-          navigate("/");
-        }, 500);
-      })
-      .catch((error) => {
-        toast.error("Invalid username or password!");
-        setPassword("");
       });
+      const { accessToken } = response.data;
+      localStorage.setItem("accessToken", accessToken);
+      login(accessToken);
+      toast.success("Logged in successfully!");
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    } catch (error) {
+      toast.error("Invalid username or password!");
+      setPassword("");
+    }
+
   };
 
   return (

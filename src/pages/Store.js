@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import Animation from "../components/Animation";
 import ProductCard from "../components/ProductCard";
 import { Flex, Box, Heading, Text, Stack } from "@chakra-ui/react";
@@ -8,20 +8,29 @@ import toast from "react-hot-toast";
 
 function Store() {
   const { isAuth } = useAuth();
-  const { addToCart, products, fetchProducts } = useShop();
+  const { addToCart, products, fetchProducts, fetchCartItems, cartItems } = useShop();
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     if (isAuth) {
-      addToCart(product);
-      toast.success("Added to cart succesfully!");
+      try {
+        await addToCart(product);
+        await updateData();
+      } catch (error) {
+        toast.error("Failed to add to cart!");
+        console.error("Error adding to cart:", error);
+      }
     } else {
       toast.error("Please Sign in to add to cart!");
     }
   };
-
   useEffect(() => {
-    fetchProducts();
+    updateData();
   }, []);
+
+  const updateData = useCallback(async () => {
+    await Promise.all([fetchProducts(), fetchCartItems()]);
+  }
+  , [fetchProducts, fetchCartItems]);
 
   return (
     <Stack spacing={8} align="center" py={{ base: 20, md: 28 }}>
@@ -50,6 +59,7 @@ function Store() {
                     price={product.price}
                     image={product.image}
                     onAddToCart={() => handleAddToCart(product)}
+                    isAdded = {cartItems.some((item) => item.productId === product.id)}
                   />
                 }
               />

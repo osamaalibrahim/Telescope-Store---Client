@@ -12,47 +12,43 @@ export const GatheringContextProvider = ({ children }) => {
   const [userParticipations, setUserParticipations] = useState([]);
 
   // Fetch all gatherings
-  const fetchGatherings = () => {
-    axios
-      .get("http://localhost:3001/gathering")
-      .then((response) => {
-        setGatherings(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching gatherings!", error);
-      });
+  const fetchGatherings = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/gathering");
+      setGatherings(res.data);
+    } catch (error) {
+      console.error("There was an error fetching gatherings!", error);
+    }
   };
 
-  const fetchUserParticipations = () => {
-    axios
-      .get("http://localhost:3001/auth/participations", {
+  const fetchUserParticipations = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/auth/participations", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
-      })
-      .then((response) => {
-        setUserParticipations(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching gatherings!", error);
       });
+      setUserParticipations(res.data);
+    } catch (error) {
+      console.error("There was an error fetching gatherings!", error);
+    }
   };
 
   // Fetch gathering participants
-  const fetchParticipants = (gatheringId) => {
-    axios
-      .get(`http://localhost:3001/gathering/${gatheringId}/participants`)
-      .then((response) => {
-        setParticipants(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching participants!", error);
-      });
+  const fetchParticipants = async (gatheringId) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3001/gathering/${gatheringId}/participants`
+      );
+      setParticipants(res.data);
+    } catch (error) {
+      console.error("There was an error fetching participants!", error);
+    }
   };
 
-  const enroll = (gatheringId) => {
-    axios
-      .post(
+  const enroll = async (gatheringId) => {
+    try {
+      const res = axios.post(
         "http://localhost:3001/auth/enroll",
         { gatheringId },
         {
@@ -60,33 +56,25 @@ export const GatheringContextProvider = ({ children }) => {
             accessToken: localStorage.getItem("accessToken"),
           },
         }
-      )
-      .then((response) => {
-        toast.success("Enrolled successfully!");
-        fetchParticipants(gatheringId);
-        fetchUserParticipations();
-      })
-      .catch((error) => {
-        console.error("There was an error enrolling!", error);
-        toast.error("You are already enrolled in this gathering!");
-      });
+      );
+      toast.success("Enrolled successfully!");
+    } catch (error) {
+      console.error("There was an error enrolling!", error);
+      toast.error("You are already enrolled in this gathering!");
+    }
   };
 
-  const unenroll = (gatheringId) => {
-    axios
-      .delete(`http://localhost:3001/auth/unenroll/${gatheringId}`, {
+  const unenroll = async (gatheringId) => {
+    try {
+      await axios.delete(`http://localhost:3001/auth/unenroll/${gatheringId}`, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
-      })
-      .then((response) => {
-        toast.success("Unenrolled successfully!");
-        fetchParticipants(gatheringId);
-        fetchUserParticipations();
-      })
-      .catch((error) => {
-        console.error("There was an error unenrolling!", error);
       });
+      toast.success("Unenrolled successfully!");
+    } catch (error) {
+      console.error("There was an error unenrolling!", error);
+    }
   };
 
   return (

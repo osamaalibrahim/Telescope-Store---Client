@@ -18,13 +18,14 @@ import ThemeToggler from "../components/ThemeToggler";
 import { useAuth } from "../contexts/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Avatar } from "@chakra-ui/react";
 import brightstar from "../images/brightstar.png";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAuth, logout } = useAuth();
+  const path = useLocation().pathname;
 
   const handleSignOut = () => {
     axios.get("http://localhost:3001/auth/logout");
@@ -48,6 +49,9 @@ const Navbar = () => {
       <Box
         as={NavLink}
         to={link}
+        color={path === link ? "teal" : "black"}
+        fontWeight={path === link ? "bold" : "normal"}
+
         mx={4}
         fontSize="2xl"
         fontFamily="Serif"
@@ -81,6 +85,7 @@ const Navbar = () => {
                 <NavBarButton onClick={onClose} link="/" text="Home" />
                 <NavBarButton onClick={onClose} link="/store" text="Store" />
                 <NavBarButton
+                
                   onClick={onClose}
                   link="/gathering"
                   text="Gatherings"

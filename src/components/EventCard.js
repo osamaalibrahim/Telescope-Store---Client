@@ -25,10 +25,30 @@ import { format } from "date-fns";
 import { useGathering } from "../contexts/GatheringContext";
 import { CheckIcon } from "@chakra-ui/icons";
 import { useAuth } from "../contexts/AuthContext";
+import { useState } from "react";
 
 export default function EventCard(props) {
   const IMAGE = require(`../images/${props.image}`);
+  const [loading, setLoading] = useState(false);
+  const { fetchUserParticipations } = useGathering();
   const { isAuth } = useAuth();
+
+  const [isEnrolled, setIsEnrolled] = useState(false);
+
+  const handleEnroll = async (gatheringId) => {
+    setLoading(true);
+    await props.handleEnroll(gatheringId);
+    setIsEnrolled(true);
+    setLoading(false);
+  };
+
+  const handleUnenroll = async (gatheringId) => {
+    setLoading(true);
+    await props.handleUnenroll(gatheringId);
+    setIsEnrolled(false);
+    setLoading(false);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -72,22 +92,27 @@ export default function EventCard(props) {
                 </Box>
                 <Box>
                   {props.gathering &&
-                    (props.isEnrolled && isAuth ? (
+                    ((props.isEnrolled || isEnrolled) && isAuth ? (
                       <Stack>
                         <Text color="green.600" fontSize="md" mr={1}>
                           Enrolled <CheckIcon />
                         </Text>
-                        <Button size="md" onClick={props.handleUnenroll}>
-                          Cancel
+                        <Button
+                          disabled={loading}
+                          size="md"
+                          onClick={handleUnenroll}
+                        >
+                          {loading ? "Loading..." : "Cancel"}
                         </Button>
                       </Stack>
                     ) : (
                       <Button
                         colorScheme="blue"
                         size="md"
-                        onClick={props.handleEnroll}
+                        onClick={handleEnroll}
+                        disabled={loading}
                       >
-                        Enroll
+                        {loading ? "Loading..." : "Enroll"}
                       </Button>
                     ))}
                 </Box>
@@ -107,6 +132,7 @@ function ParticipantsModal(props) {
     fetchParticipants(props.gatheringId);
     onOpen();
   };
+
   return (
     <>
       <Button onClick={handle} size={"sm"}>
