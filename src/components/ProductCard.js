@@ -15,12 +15,14 @@ import {
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { CheckIcon } from "@chakra-ui/icons";
+import { useAuth } from "../contexts/AuthContext";
 
 
 export default function ProductCard(props) {
   const IMAGE = require(`../images/${props.image}`);
   const [loading, setLoading] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+  const { isAuth } = useAuth();
 
   const handleAddToCart = async (product) => {
     setLoading(true); // Set loading to true before calling addToCart
@@ -41,6 +43,7 @@ export default function ProductCard(props) {
       transition={{ duration: 2 }}
     >
       <Center p={8}>
+        
         <Card w={{ base: "100%", md: "400px", sm: "200px" }}>
           <CardBody align="center">
             <Image
@@ -69,7 +72,7 @@ export default function ProductCard(props) {
                 </Text>
               </Box>
               <Box>
-                {isAdded || props.isAdded ? (
+                {isAuth && (isAdded || props.isAdded) ? (
                   <Text color="green.600">Added to cart <CheckIcon /></Text>
                 ) : (
                   <Button

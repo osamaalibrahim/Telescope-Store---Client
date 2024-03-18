@@ -6,7 +6,7 @@ import LoginCard from "../components/LoginCard";
 import { Container } from "@chakra-ui/react";
 
 function Register() {
-  const api = "http://localhost:3001";
+  const api = "https://6fpv4z0k-3001.inc1.devtunnels.ms";
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");

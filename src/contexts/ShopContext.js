@@ -10,7 +10,7 @@ export const ShopProvider = ({ children }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/product");
+      const response = await axios.get("https://6fpv4z0k-3001.inc1.devtunnels.ms/product");
       setProducts(response.data);
     } catch (error) {
       console.error("There was an error!", error);
@@ -19,7 +19,7 @@ export const ShopProvider = ({ children }) => {
 
   const fetchCartItems = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/auth/cart", {
+      const response = await axios.get("https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -42,7 +42,7 @@ export const ShopProvider = ({ children }) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3001/auth/cart",
+      "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
       { itemId },
       {
         headers: {
@@ -54,14 +54,15 @@ export const ShopProvider = ({ children }) => {
     toast.success("Added to cart successfully!");
   } catch (error) {
     console.error("There was an error!", error);
-    throw error; // Rethrow the error to handle it in the calling function
+    //throw error; // Rethrow the error to handle it in the calling function
+    toast.error("There was an error adding to cart!");
   }
 };
 
   const removeFromCart = async (item) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/auth/cart/${item.id}`,
+        `https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart/${item.id}`,
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
@@ -77,7 +78,7 @@ export const ShopProvider = ({ children }) => {
   const updateQuantity = async (productId, newQuantity) => {
     try {
       const response = await axios.put(
-        "http://localhost:3001/auth/cart",
+        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
         { productId, quantity: newQuantity },
         {
           headers: {
@@ -99,7 +100,7 @@ export const ShopProvider = ({ children }) => {
   // clear the cart
   const clearCart = async () => {
     try {
-      const response = await axios.delete("http://localhost:3001/auth/cart", {
+      const response = await axios.delete("https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },

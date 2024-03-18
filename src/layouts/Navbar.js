@@ -28,7 +28,7 @@ const Navbar = () => {
   const path = useLocation().pathname;
 
   const handleSignOut = () => {
-    axios.get("http://localhost:3001/auth/logout");
+    axios.get("https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/logout");
     toast.success("Logged out successfully!");
     setTimeout(() => {}, 500);
     logout();
@@ -36,7 +36,7 @@ const Navbar = () => {
   };
 
   const handleDarwerSignOut = () => {
-    axios.get("http://localhost:3001/auth/logout");
+    axios.get("https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/logout");
     toast.success("Logged out successfully!");
     setTimeout(() => {}, 500);
     logout();
@@ -45,21 +45,37 @@ const Navbar = () => {
   };
 
   const NavBarButton = ({ link, text, onClick }) => {
-    return (
-      <Box
-        as={NavLink}
-        to={link}
-        color={path === link ? "teal" : "black"}
-        fontWeight={path === link ? "bold" : "normal"}
-
-        mx={4}
-        fontSize="2xl"
-        fontFamily="Serif"
-        onClick={onClick}
-      >
-        {text}
-      </Box>
-    );
+    {
+      if (text !== "Sign Out") {
+        return (
+          <Box
+            as={NavLink}
+            to={link}
+            color={path === link ? "teal" : ""}
+            fontWeight={path === link ? "bold" : "normal"}
+            mx={4}
+            fontSize="2xl"
+            fontFamily="Serif"
+            onClick={onClick}
+          >
+            {text}
+          </Box>
+        );
+      } else {
+        return (
+          <Box
+            as={NavLink}
+            to={link}
+            mx={4}
+            fontSize="2xl"
+            fontFamily="Serif"
+            onClick={onClick}
+          >
+            {text}
+          </Box>
+        );
+      }
+    }
   };
 
   return (
@@ -85,7 +101,6 @@ const Navbar = () => {
                 <NavBarButton onClick={onClose} link="/" text="Home" />
                 <NavBarButton onClick={onClose} link="/store" text="Store" />
                 <NavBarButton
-                
                   onClick={onClose}
                   link="/gathering"
                   text="Gatherings"

@@ -5,7 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 function Support() {
-  const api = "http://localhost:3001";
+  const api = "https://6fpv4z0k-3001.inc1.devtunnels.ms";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
