@@ -18,9 +18,9 @@ export default function CallToActionWithVideo() {
   const navigate = useNavigate();
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
+      initial={{ opacity: 0, y: -50 }} // Initial animation values
+      animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
+      transition={{ duration: 1 }} // Animation duration
     >
       <Container maxW={"7xl"}>
         <Stack
@@ -34,6 +34,7 @@ export default function CallToActionWithVideo() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: "5xl", sm: "5xl", lg: "6xl" }}
+              fontFamily="Serif"
               textAlign="center"
             >
               <Text
@@ -57,7 +58,7 @@ export default function CallToActionWithVideo() {
                 BrightStar!
               </Text>
             </Heading>
-            <Text color={"gray.500"}>
+            <Text color={"gray.500"} fontFamily="Serif">
               We believe the wonders of the universe should be within reach for
               everyone, everywhere. With our exportly curated selection of
               telescopes and our dedication to dymistifiying astronomy, we are
@@ -92,11 +93,11 @@ export default function CallToActionWithVideo() {
             w={"full"}
           >
             <Blob
-              w={"130%"}
+              w={"100%"}
               h={"150%"}
               position={"absolute"}
               top={"-20%"}
-              left={0}
+              left={"5%"}
               zIndex={-1}
               color={useColorModeValue("blue.50", "blue.400")}
             />

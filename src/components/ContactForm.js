@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { MdPhone, MdEmail, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
-import React from "react";
+import React, {useState} from "react";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 
@@ -43,7 +43,13 @@ function infoButton({ text, link, icon }) {
 
 export default function Contactform(props) {
   const { colorMode } = useColorMode();
+  const [loading, setLoading] = useState(false);
 
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    await props.handleSubmit(e);
+    setLoading(false);
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -109,8 +115,8 @@ export default function Contactform(props) {
                 <WrapItem>
                   <Box borderRadius="lg">
                     <Box m={8}>
-                      <form onSubmit={props.handleSubmit}>
-                        <VStack spacing={5}>
+                      <form onSubmit={handleSubmit}>
+                        <VStack spacing={5} pl={10} justifyContent={"center"}>
                           <FormControl id="name" isRequired>
                             <FormLabel>Name</FormLabel>
                             <InputGroup
@@ -167,7 +173,7 @@ export default function Contactform(props) {
                             _hover={{ bg: "blue.700" }}
                             color="white"
                           >
-                            Send
+                            {loading ? "Loading..." : "Send"}
                           </Button>
                         </VStack>
                       </form>

@@ -3,6 +3,18 @@ import ContactForm from "../components/ContactForm";
 import Animation from "../components/Animation";
 import axios from "axios";
 import toast from "react-hot-toast";
+import {
+  useDisclosure,
+  Button,
+  AlertDialog,
+  AlertDialogFooter,
+  AlertDialogBody,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  AlertDialogCloseButton,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 function Support() {
   const api = "https://6fpv4z0k-3001.inc1.devtunnels.ms";
@@ -11,28 +23,27 @@ function Support() {
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     await sendMessage({ name, email, text });
   };
 
   const sendMessage = async ({ name, email, text }) => {
-
-
     try {
       const response = await axios.post(`${api}/message`, {
         name,
         email,
         text,
       });
-      toast.success("Message sent successfully! Please check your email.");
+      onOpen();
       setName("");
       setEmail("");
       setText("");
-    }catch (error) {
-      toast.error(
-        "There was an error sending your message. Please try again."
-      );
+    } catch (error) {
+      toast.error("There was an error sending your message. Please try again.");
       setName("");
       setEmail("");
       setText("");
@@ -40,8 +51,12 @@ function Support() {
   };
 
   return (
-    <Animation
-      component={
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: -50 }} // Initial animation values
+        animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
+        transition={{ duration: 1 }} // Animation duration
+      >
         <ContactForm
           name={name}
           setName={setName}
@@ -51,8 +66,30 @@ function Support() {
           setText={setText}
           handleSubmit={handleSubmit}
         />
-      }
-    />
+      </motion.div>
+      <AlertDialog
+        motionPreset="slideInBottom"
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+      >
+        <AlertDialogOverlay />
+
+        <AlertDialogContent>
+          <AlertDialogHeader>Thank You !</AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <AlertDialogBody>
+            Your message has been placed successfully! Please check your email.
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose}>
+              Ok
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 }
 

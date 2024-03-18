@@ -5,10 +5,12 @@ import { Flex, Box, Heading, Text, Stack } from "@chakra-ui/react";
 import { useAuth } from "../contexts/AuthContext";
 import { useShop } from "../contexts/ShopContext";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 function Store() {
   const { isAuth } = useAuth();
-  const { addToCart, products, fetchProducts, fetchCartItems, cartItems } = useShop();
+  const { addToCart, products, fetchProducts, fetchCartItems, cartItems } =
+    useShop();
 
   const handleAddToCart = async (product) => {
     if (isAuth) {
@@ -29,23 +31,30 @@ function Store() {
 
   const updateData = useCallback(async () => {
     await Promise.all([fetchProducts(), fetchCartItems()]);
-  }
-  , [fetchProducts, fetchCartItems]);
+  }, [fetchProducts, fetchCartItems]);
 
   return (
+    <motion.div
+    initial={{ opacity: 0, y: -50 }} // Initial animation values
+    animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
+    transition={{ duration: 1 }} // Animation duration
+  >
     <Stack spacing={8} align="center" py={{ base: 20, md: 28 }}>
-      <Heading
-        fontWeight={600}
-        fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
-        lineHeight={"110%"}
-        align="center"
-        px={{ base: 4, md: 8, lg: 12 }}
-      >
-        Discover Our Exclusive{" "}
-        <Text as={"span"} color={"blue.400"}>
-          Products!
-        </Text>
-      </Heading>
+
+        <Heading
+          fontWeight={600}
+          fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
+          fontFamily="Serif"
+
+          lineHeight={"110%"}
+          align="center"
+          px={{ base: 4, md: 8, lg: 12 }}
+        >
+          Discover Our Exclusive{" "}
+          <Text as={"span"} color={"blue.400"}>
+            Products!
+          </Text>
+        </Heading>
       <Flex direction="row" wrap="wrap" justify="center" align="center">
         {products.map((product, index) => {
           // Assuming product.id is a unique identifier for each product
@@ -59,7 +68,9 @@ function Store() {
                     price={product.price}
                     image={product.image}
                     onAddToCart={() => handleAddToCart(product)}
-                    isAdded = {cartItems.some((item) => item.productId === product.id)}
+                    isAdded={cartItems.some(
+                      (item) => item.productId === product.id
+                    )}
                   />
                 }
               />
@@ -68,6 +79,8 @@ function Store() {
         })}
       </Flex>
     </Stack>
+    </motion.div>
+
   );
 }
 

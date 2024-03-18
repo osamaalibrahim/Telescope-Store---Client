@@ -19,15 +19,17 @@ function Calender() {
   }, []);
 
   return (
+    <motion.div
+    initial={{ opacity: 0, y: -50 }} // Initial animation values
+    animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
+    transition={{ duration: 1 }} // Animation duration
+    >
     <Stack spacing={8} align={"center"} paddingY={{ base: 20, md: 28 }}>
-      {/* <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-      > */}
+
         <Heading
           fontWeight={600}
           fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
+          fontFamily="Serif"
           lineHeight={"110%"}
           align={"center"}
           px={{ base: 4, md: 8, lg: 12 }}
@@ -37,7 +39,6 @@ function Calender() {
             Events!
           </Text>
         </Heading>
-      {/* </motion.div> */}
       <Flex direction="row" wrap="wrap" justify="center" align="center">
         {CalenderList.map((calender, index) => {
           // Assuming calender.id is a unique identifier for each calender
@@ -59,6 +60,8 @@ function Calender() {
         })}
       </Flex>
     </Stack>
+    </motion.div>
+
   );
 }
 

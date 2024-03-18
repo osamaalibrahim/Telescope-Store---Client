@@ -59,7 +59,7 @@ export default function EventCard(props) {
         <Card
           direction={{ base: "column", sm: "row" }}
           overflow="hidden"
-          w={{ base: "100%", sm: "1000px" }}
+          w={{ base: "100%", xl: "1000px" }}
         >
           <Image
             objectFit="cover"
@@ -87,7 +87,7 @@ export default function EventCard(props) {
               >
                 <Box>
                   <Text color="blue.600" fontSize="md" mr={4}>
-                    {format(new Date(props.date), "eeee, dd MMMM yyyy, h:mm a")}
+                    {format(new Date(props.date), "dd MMMM yyyy, h:mm a")}
                   </Text>
                 </Box>
                 <Box>

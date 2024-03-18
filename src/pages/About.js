@@ -44,9 +44,9 @@ function About() {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
+      initial={{ opacity: 0, y: -50 }} // Initial animation values
+      animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
+      transition={{ duration: 1 }} // Animation duration
     >
       <Stack
         bg={useColorModeValue("gray.50", "gray.900")}
@@ -58,6 +58,7 @@ function About() {
       >
         <Text
           fontSize={{ base: "xl", md: "2xl" }}
+          fontFamily="Serif"
           textAlign={"center"}
           maxW={"3xl"}
         >
@@ -70,6 +71,7 @@ function About() {
         <Heading
           fontWeight={600}
           fontSize={{ base: "5xl", sm: "5xl", md: "6xl" }}
+          fontFamily="Serif"
           lineHeight={"110%"}
           align={"center"}
         >
@@ -97,7 +99,7 @@ function AvatarBox({ name, image }) {
     <Box textAlign={"center"} p={10}>
       <Avatar src={image} mb={2} size={"2xl"} />
 
-      <Heading fontSize={"xl"} fontWeight={700}>
+      <Heading fontSize={"xl"} fontWeight={700} fontFamily="Serif">
         {name}
       </Heading>
     </Box>

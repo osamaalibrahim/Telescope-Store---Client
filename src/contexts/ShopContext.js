@@ -70,6 +70,7 @@ export const ShopProvider = ({ children }) => {
         }
       );
       setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
+      toast.success("Removed from cart successfully!");
     } catch (error) {
       console.error("There was an error!", error);
     }
@@ -110,6 +111,7 @@ export const ShopProvider = ({ children }) => {
       console.error("There was an error!", error);
     }
   };
+
 
   return (
     <ShopContext.Provider

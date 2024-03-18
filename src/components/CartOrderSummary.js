@@ -19,7 +19,7 @@ export const CartOrderSummary = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   const { isAuth } = useAuth();
-  const { clearCart } = useShop();
+  const {clearCart } = useShop();
   const handleCheckout = () => {
     if (!isAuth) {
       toast.error("You need to sign in first");
@@ -75,8 +75,7 @@ export const CartOrderSummary = (props) => {
           <AlertDialogHeader>Thank You !</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
-            Your order has been placed successfully. Please check your email for
-            the order confirmation.
+            Your order has been placed successfully! Please check your email.
           </AlertDialogBody>
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onClose}>
