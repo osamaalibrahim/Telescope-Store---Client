@@ -20,12 +20,11 @@ function Calender() {
 
   return (
     <motion.div
-    initial={{ opacity: 0, y: -50 }} // Initial animation values
-    animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
-    transition={{ duration: 1 }} // Animation duration
+      initial={{ opacity: 0, y: -50 }} // Initial animation values
+      animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
+      transition={{ duration: 1 }} // Animation duration
     >
-    <Stack spacing={8} align={"center"} paddingY={{ base: 20, md: 28 }}>
-
+      <Stack spacing={8} align={"center"} paddingY={{ base: 20, md: 28 }}>
         <Heading
           fontWeight={600}
           fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
@@ -39,29 +38,28 @@ function Calender() {
             Events!
           </Text>
         </Heading>
-      <Flex direction="row" wrap="wrap" justify="center" align="center">
-        {CalenderList.map((calender, index) => {
-          // Assuming calender.id is a unique identifier for each calender
-          return (
-            <Box m={4} key={calender.id}>
-              <Animation
-                component={
-                  <EventCard
-                    gathering={false}
-                    title={calender.title}
-                    description={calender.description}
-                    date={calender.date}
-                    image={calender.image}
-                  />
-                }
-              />
-            </Box>
-          );
-        })}
-      </Flex>
-    </Stack>
+        <Flex direction="row" wrap="wrap" justify="center" align="center">
+          {CalenderList.map((calender, index) => {
+            // Assuming calender.id is a unique identifier for each calender
+            return (
+              <Box m={4} key={calender.id}>
+                <Animation
+                  component={
+                    <EventCard
+                      gathering={false}
+                      title={calender.title}
+                      description={calender.description}
+                      date={calender.date}
+                      image={calender.image}
+                    />
+                  }
+                />
+              </Box>
+            );
+          })}
+        </Flex>
+      </Stack>
     </motion.div>
-
   );
 }
 

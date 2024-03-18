@@ -20,7 +20,6 @@ function Login() {
   };
 
   const userLogin = async ({ email, password }) => {
-
     try {
       const response = await axios.post(`${api}/auth/login`, {
         email,
@@ -37,7 +36,6 @@ function Login() {
       toast.error("Invalid username or password!");
       setPassword("");
     }
-
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect,  useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useShop } from "../contexts/ShopContext";
 import { Box, Stack, Heading, Flex, HStack, Link } from "@chakra-ui/react";
 import { CartItem } from "../components/CartItem";
@@ -43,9 +43,9 @@ function Cart() {
 
   return (
     <motion.div
-    initial={{ opacity: 0, y: -50 }} // Initial animation values
-    animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
-    transition={{ duration: 1 }} // Animation duration
+      initial={{ opacity: 0, y: -50 }} // Initial animation values
+      animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
+      transition={{ duration: 1 }} // Animation duration
     >
       <Box
         maxW={{ base: "3xl", lg: "7xl" }}

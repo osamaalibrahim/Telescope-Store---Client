@@ -35,17 +35,15 @@ function Store() {
 
   return (
     <motion.div
-    initial={{ opacity: 0, y: -50 }} // Initial animation values
-    animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
-    transition={{ duration: 1 }} // Animation duration
-  >
-    <Stack spacing={8} align="center" py={{ base: 20, md: 28 }}>
-
+      initial={{ opacity: 0, y: -50 }} // Initial animation values
+      animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
+      transition={{ duration: 1 }} // Animation duration
+    >
+      <Stack spacing={8} align="center" py={{ base: 20, md: 28 }}>
         <Heading
           fontWeight={600}
           fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
           fontFamily="Serif"
-
           lineHeight={"110%"}
           align="center"
           px={{ base: 4, md: 8, lg: 12 }}
@@ -55,32 +53,31 @@ function Store() {
             Products!
           </Text>
         </Heading>
-      <Flex direction="row" wrap="wrap" justify="center" align="center">
-        {products.map((product, index) => {
-          // Assuming product.id is a unique identifier for each product
-          return (
-            <Box m={4} key={product.id}>
-              <Animation
-                component={
-                  <ProductCard
-                    name={product.name}
-                    description={product.description}
-                    price={product.price}
-                    image={product.image}
-                    onAddToCart={() => handleAddToCart(product)}
-                    isAdded={cartItems.some(
-                      (item) => item.productId === product.id
-                    )}
-                  />
-                }
-              />
-            </Box>
-          );
-        })}
-      </Flex>
-    </Stack>
+        <Flex direction="row" wrap="wrap" justify="center" align="center">
+          {products.map((product, index) => {
+            // Assuming product.id is a unique identifier for each product
+            return (
+              <Box m={4} key={product.id}>
+                <Animation
+                  component={
+                    <ProductCard
+                      name={product.name}
+                      description={product.description}
+                      price={product.price}
+                      image={product.image}
+                      onAddToCart={() => handleAddToCart(product)}
+                      isAdded={cartItems.some(
+                        (item) => item.productId === product.id
+                      )}
+                    />
+                  }
+                />
+              </Box>
+            );
+          })}
+        </Flex>
+      </Stack>
     </motion.div>
-
   );
 }
 

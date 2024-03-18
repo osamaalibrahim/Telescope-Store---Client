@@ -19,7 +19,7 @@ export const CartOrderSummary = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   const { isAuth } = useAuth();
-  const {clearCart } = useShop();
+  const { clearCart } = useShop();
   const handleCheckout = () => {
     if (!isAuth) {
       toast.error("You need to sign in first");

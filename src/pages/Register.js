@@ -19,20 +19,17 @@ function Register() {
   };
 
   const userRegister = async ({ name, email, password }) => {
-
     try {
       const response = await axios.post(`${api}/auth/register`, {
         name,
         email,
         password,
       });
-      toast.success(
-        "Account Created successfully!. Please login to continue."
-      );
+      toast.success("Account Created successfully!. Please login to continue.");
       setTimeout(() => {
         navigate("/login");
       }, 500);
-    }catch (error) {
+    } catch (error) {
       toast.error("Email already exists! Please try with another email.");
       setPassword("");
     }

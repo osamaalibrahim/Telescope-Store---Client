@@ -10,7 +10,9 @@ export const ShopProvider = ({ children }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("https://6fpv4z0k-3001.inc1.devtunnels.ms/product");
+      const response = await axios.get(
+        "https://6fpv4z0k-3001.inc1.devtunnels.ms/product"
+      );
       setProducts(response.data);
     } catch (error) {
       console.error("There was an error!", error);
@@ -19,11 +21,14 @@ export const ShopProvider = ({ children }) => {
 
   const fetchCartItems = async () => {
     try {
-      const response = await axios.get("https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart", {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      });
+      const response = await axios.get(
+        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        }
+      );
       setCartItems(response.data);
     } catch (error) {
       console.error("There was an error!", error);
@@ -31,33 +36,33 @@ export const ShopProvider = ({ children }) => {
   };
 
   const addToCart = async (item) => {
-  const itemId = item.id;
-  if (cartItems.some((cartItem) => cartItem.productId === itemId)) {
-    updateQuantity(
-      itemId,
-      cartItems.find((cartItem) => cartItem.productId === itemId).quantity + 1
-    );
-    return;
-  }
+    const itemId = item.id;
+    if (cartItems.some((cartItem) => cartItem.productId === itemId)) {
+      updateQuantity(
+        itemId,
+        cartItems.find((cartItem) => cartItem.productId === itemId).quantity + 1
+      );
+      return;
+    }
 
-  try {
-    const response = await axios.post(
-      "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
-      { itemId },
-      {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      }
-    );
-    //setCartItems([...cartItems, item]);
-    toast.success("Added to cart successfully!");
-  } catch (error) {
-    console.error("There was an error!", error);
-    //throw error; // Rethrow the error to handle it in the calling function
-    toast.error("There was an error adding to cart!");
-  }
-};
+    try {
+      const response = await axios.post(
+        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
+        { itemId },
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        }
+      );
+      //setCartItems([...cartItems, item]);
+      toast.success("Added to cart successfully!");
+    } catch (error) {
+      console.error("There was an error!", error);
+      //throw error; // Rethrow the error to handle it in the calling function
+      toast.error("There was an error adding to cart!");
+    }
+  };
 
   const removeFromCart = async (item) => {
     try {
@@ -101,17 +106,19 @@ export const ShopProvider = ({ children }) => {
   // clear the cart
   const clearCart = async () => {
     try {
-      const response = await axios.delete("https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart", {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      });
+      const response = await axios.delete(
+        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        }
+      );
       setCartItems([]);
     } catch (error) {
       console.error("There was an error!", error);
     }
   };
-
 
   return (
     <ShopContext.Provider

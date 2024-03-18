@@ -14,7 +14,9 @@ export const GatheringContextProvider = ({ children }) => {
   // Fetch all gatherings
   const fetchGatherings = async () => {
     try {
-      const res = await axios.get("https://6fpv4z0k-3001.inc1.devtunnels.ms/gathering");
+      const res = await axios.get(
+        "https://6fpv4z0k-3001.inc1.devtunnels.ms/gathering"
+      );
       setGatherings(res.data);
     } catch (error) {
       console.error("There was an error fetching gatherings!", error);
@@ -23,11 +25,14 @@ export const GatheringContextProvider = ({ children }) => {
 
   const fetchUserParticipations = async () => {
     try {
-      const res = await axios.get("https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/participations", {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      });
+      const res = await axios.get(
+        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/participations",
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        }
+      );
       setUserParticipations(res.data);
     } catch (error) {
       console.error("There was an error fetching gatherings!", error);
@@ -66,11 +71,14 @@ export const GatheringContextProvider = ({ children }) => {
 
   const unenroll = async (gatheringId) => {
     try {
-      await axios.delete(`https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/unenroll/${gatheringId}`, {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      });
+      await axios.delete(
+        `https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/unenroll/${gatheringId}`,
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        }
+      );
       toast.success("Unenrolled successfully!");
     } catch (error) {
       console.error("There was an error unenrolling!", error);

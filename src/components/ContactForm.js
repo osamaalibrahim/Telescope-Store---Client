@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { MdPhone, MdEmail, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 

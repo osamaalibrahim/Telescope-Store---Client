@@ -17,7 +17,6 @@ import { useState } from "react";
 import { CheckIcon } from "@chakra-ui/icons";
 import { useAuth } from "../contexts/AuthContext";
 
-
 export default function ProductCard(props) {
   const IMAGE = require(`../images/${props.image}`);
   const [loading, setLoading] = useState(false);
@@ -43,7 +42,6 @@ export default function ProductCard(props) {
       transition={{ duration: 2 }}
     >
       <Center p={8}>
-        
         <Card w={{ base: "100%", md: "400px", sm: "200px" }}>
           <CardBody align="center">
             <Image
@@ -73,7 +71,9 @@ export default function ProductCard(props) {
               </Box>
               <Box>
                 {isAuth && (isAdded || props.isAdded) ? (
-                  <Text color="green.600">Added to cart <CheckIcon /></Text>
+                  <Text color="green.600">
+                    Added to cart <CheckIcon />
+                  </Text>
                 ) : (
                   <Button
                     disabled={loading}
