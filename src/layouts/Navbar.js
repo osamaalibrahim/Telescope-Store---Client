@@ -85,7 +85,7 @@ const Navbar = () => {
       transition={{ duration: 1 }}
     >
       <Flex px={4} py={3} align="center" justify="space-between">
-        <Avatar src={brightstar} size="lg" bg={"#000000"} />
+        <Avatar src={brightstar} size="lg"  />
         <IconButton
           display={{ base: "flex", xl: "none" }}
           onClick={onOpen}

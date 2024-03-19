@@ -12,6 +12,8 @@ import { motion } from "framer-motion";
 import osama from "../images/osama.jpg";
 import omar from "../images/omar.jpg";
 import Mohammed from "../images/Mohammed.jpg";
+import rayyan from "../images/rayyan.jpg";
+import sohaib from "../images/sohaib.jpg";
 
 function About() {
   const listOfAvatars = [
@@ -28,12 +30,12 @@ function About() {
     {
       id: 3,
       name: "Sohaib Aledlah",
-      image: omar,
+      image: sohaib,
     },
     {
       id: 4,
       name: "Rayyan Alsuhaibani",
-      image: omar,
+      image: rayyan,
     },
     {
       id: 5,
