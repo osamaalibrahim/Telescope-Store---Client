@@ -39,21 +39,26 @@ function Store() {
       animate={{ opacity: 1, y: 0 }} // Animation to apply when component is mounted
       transition={{ duration: 1 }} // Animation duration
     >
-      <Stack spacing={8} align="center" py={{ base: 20, md: 28 }}>
+      <Stack spacing={8} align="center" py={{ base: 20, xl: 28 }}>
         <Heading
           fontWeight={600}
-          fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
+          fontSize={{ base: "4xl", xl: "6xl" }}
           fontFamily="Serif"
           lineHeight={"110%"}
           align="center"
-          px={{ base: 4, md: 8, lg: 12 }}
+          px={{ base: 4, xl: 8 }}
         >
           Discover Our Exclusive{" "}
           <Text as={"span"} color={"blue.400"}>
             Products!
           </Text>
         </Heading>
-        <Flex direction="row" wrap="wrap" justify="center" align="center">
+        <Flex
+          direction={{ base: "column", sm: "row" }}
+          wrap="wrap"
+          justify="center"
+          align="center"
+        >
           {products.map((product, index) => {
             // Assuming product.id is a unique identifier for each product
             return (

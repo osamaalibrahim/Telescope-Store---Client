@@ -42,7 +42,7 @@ export default function ProductCard(props) {
       transition={{ duration: 2 }}
     >
       <Center p={8}>
-        <Card w={{ base: "100%", md: "400px", sm: "200px" }}>
+        <Card w={{ base: "100%", xl: "500px" }}>
           <CardBody align="center">
             <Image
               src={IMAGE}
