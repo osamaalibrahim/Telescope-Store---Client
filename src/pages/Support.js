@@ -17,7 +17,7 @@ import {
 import { motion } from "framer-motion";
 
 function Support() {
-  const api = "https://6fpv4z0k-3001.inc1.devtunnels.ms";
+  const api = "http://localhost:3001";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

@@ -11,7 +11,7 @@ export const ShopProvider = ({ children }) => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        "https://6fpv4z0k-3001.inc1.devtunnels.ms/product"
+        "http://localhost:3001/product"
       );
       setProducts(response.data);
     } catch (error) {
@@ -22,7 +22,7 @@ export const ShopProvider = ({ children }) => {
   const fetchCartItems = async () => {
     try {
       const response = await axios.get(
-        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
+        "http://localhost:3001/auth/cart",
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
@@ -47,7 +47,7 @@ export const ShopProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
+        "http://localhost:3001/auth/cart",
         { itemId },
         {
           headers: {
@@ -67,7 +67,7 @@ export const ShopProvider = ({ children }) => {
   const removeFromCart = async (item) => {
     try {
       const response = await axios.delete(
-        `https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart/${item.id}`,
+        `http://localhost:3001/auth/cart/${item.id}`,
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
@@ -84,7 +84,7 @@ export const ShopProvider = ({ children }) => {
   const updateQuantity = async (productId, newQuantity) => {
     try {
       const response = await axios.put(
-        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
+        "http://localhost:3001/auth/cart",
         { productId, quantity: newQuantity },
         {
           headers: {
@@ -107,7 +107,7 @@ export const ShopProvider = ({ children }) => {
   const clearCart = async () => {
     try {
       const response = await axios.delete(
-        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/cart",
+        "http://localhost:3001/auth/cart",
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),

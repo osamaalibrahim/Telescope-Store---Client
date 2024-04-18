@@ -9,7 +9,7 @@ function Calender() {
 
   useEffect(() => {
     axios
-      .get("https://6fpv4z0k-3001.inc1.devtunnels.ms/event")
+      .get("http://localhost:3001/event")
       .then((response) => {
         setCalenderList(response.data);
       })

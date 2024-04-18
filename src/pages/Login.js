@@ -7,7 +7,7 @@ import { Container } from "@chakra-ui/react";
 import { useAuth } from "../contexts/AuthContext";
 
 function Login() {
-  const api = "https://6fpv4z0k-3001.inc1.devtunnels.ms";
+  const api = "http://localhost:3001";
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");

@@ -15,7 +15,7 @@ export const GatheringContextProvider = ({ children }) => {
   const fetchGatherings = async () => {
     try {
       const res = await axios.get(
-        "https://6fpv4z0k-3001.inc1.devtunnels.ms/gathering"
+        "http://localhost:3001/gathering"
       );
       setGatherings(res.data);
     } catch (error) {
@@ -26,7 +26,7 @@ export const GatheringContextProvider = ({ children }) => {
   const fetchUserParticipations = async () => {
     try {
       const res = await axios.get(
-        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/participations",
+        "http://localhost:3001/auth/participations",
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
@@ -43,7 +43,7 @@ export const GatheringContextProvider = ({ children }) => {
   const fetchParticipants = async (gatheringId) => {
     try {
       const res = await axios.get(
-        `https://6fpv4z0k-3001.inc1.devtunnels.ms/gathering/${gatheringId}/participants`
+        `http://localhost:3001/gathering/${gatheringId}/participants`
       );
       setParticipants(res.data);
     } catch (error) {
@@ -54,7 +54,7 @@ export const GatheringContextProvider = ({ children }) => {
   const enroll = async (gatheringId) => {
     try {
       const res = axios.post(
-        "https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/enroll",
+        "http://localhost:3001/auth/enroll",
         { gatheringId },
         {
           headers: {
@@ -72,7 +72,7 @@ export const GatheringContextProvider = ({ children }) => {
   const unenroll = async (gatheringId) => {
     try {
       await axios.delete(
-        `https://6fpv4z0k-3001.inc1.devtunnels.ms/auth/unenroll/${gatheringId}`,
+        `http://localhost:3001/auth/unenroll/${gatheringId}`,
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
