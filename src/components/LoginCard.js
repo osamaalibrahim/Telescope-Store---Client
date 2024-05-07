@@ -19,6 +19,7 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 
 function LoginCard(props) {
   const { colorMode } = useColorMode();
@@ -102,12 +103,9 @@ function LoginCard(props) {
                           ? "Already Have an Account?"
                           : "New to BrightStar?"}
                       </Text>
-                      <Link
-                        color="#0969da"
-                        href={props.register ? "/login" : "register"}
-                      >
+                      <NavLink style={{ color: '#0969da' }} to={props.register ? "/login" : "/register"}>
                         {props.register ? "Sign In." : "Create Account"}
-                      </Link>
+                      </NavLink>
                     </HStack>
                   </Center>
                 </CardBody>
