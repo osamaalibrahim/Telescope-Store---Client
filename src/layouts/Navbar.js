@@ -28,7 +28,7 @@ const Navbar = () => {
   const path = useLocation().pathname;
 
   const handleSignOut = () => {
-    axios.get("http://localhost:3001/auth/logout");
+    axios.get("https://telescope-server.onrender.com/auth/logout");
     toast.success("Logged out successfully!");
     setTimeout(() => {}, 500);
     logout();
@@ -36,7 +36,7 @@ const Navbar = () => {
   };
 
   const handleDarwerSignOut = () => {
-    axios.get("http://localhost:3001/auth/logout");
+    axios.get("https://telescope-server.onrender.com/auth/logout");
     toast.success("Logged out successfully!");
     setTimeout(() => {}, 500);
     logout();

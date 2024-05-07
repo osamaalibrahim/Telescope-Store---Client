@@ -9,7 +9,7 @@ function Calender() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/event")
+      .get("https://telescope-server.onrender.com/event")
       .then((response) => {
         setCalenderList(response.data);
       })

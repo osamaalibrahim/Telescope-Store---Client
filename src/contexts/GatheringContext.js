@@ -15,7 +15,7 @@ export const GatheringContextProvider = ({ children }) => {
   const fetchGatherings = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3001/gathering"
+        "https://telescope-server.onrender.com/gathering"
       );
       setGatherings(res.data);
     } catch (error) {
@@ -26,7 +26,7 @@ export const GatheringContextProvider = ({ children }) => {
   const fetchUserParticipations = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3001/auth/participations",
+        "https://telescope-server.onrender.com/auth/participations",
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
@@ -43,7 +43,7 @@ export const GatheringContextProvider = ({ children }) => {
   const fetchParticipants = async (gatheringId) => {
     try {
       const res = await axios.get(
-        `http://localhost:3001/gathering/${gatheringId}/participants`
+        `https://telescope-server.onrender.com/gathering/${gatheringId}/participants`
       );
       setParticipants(res.data);
     } catch (error) {
@@ -54,7 +54,7 @@ export const GatheringContextProvider = ({ children }) => {
   const enroll = async (gatheringId) => {
     try {
       const res = axios.post(
-        "http://localhost:3001/auth/enroll",
+        "https://telescope-server.onrender.com/auth/enroll",
         { gatheringId },
         {
           headers: {
@@ -72,7 +72,7 @@ export const GatheringContextProvider = ({ children }) => {
   const unenroll = async (gatheringId) => {
     try {
       await axios.delete(
-        `http://localhost:3001/auth/unenroll/${gatheringId}`,
+        `https://telescope-server.onrender.com/auth/unenroll/${gatheringId}`,
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),

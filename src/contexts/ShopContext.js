@@ -11,7 +11,7 @@ export const ShopProvider = ({ children }) => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/product"
+        "https://telescope-server.onrender.com/product"
       );
       setProducts(response.data);
     } catch (error) {
@@ -22,7 +22,7 @@ export const ShopProvider = ({ children }) => {
   const fetchCartItems = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/auth/cart",
+        "https://telescope-server.onrender.com/auth/cart",
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
@@ -47,7 +47,7 @@ export const ShopProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/auth/cart",
+        "https://telescope-server.onrender.com/auth/cart",
         { itemId },
         {
           headers: {
@@ -67,7 +67,7 @@ export const ShopProvider = ({ children }) => {
   const removeFromCart = async (item) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/auth/cart/${item.id}`,
+        `https://telescope-server.onrender.com/auth/cart/${item.id}`,
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
@@ -84,7 +84,7 @@ export const ShopProvider = ({ children }) => {
   const updateQuantity = async (productId, newQuantity) => {
     try {
       const response = await axios.put(
-        "http://localhost:3001/auth/cart",
+        "https://telescope-server.onrender.com/auth/cart",
         { productId, quantity: newQuantity },
         {
           headers: {
@@ -107,7 +107,7 @@ export const ShopProvider = ({ children }) => {
   const clearCart = async () => {
     try {
       const response = await axios.delete(
-        "http://localhost:3001/auth/cart",
+        "https://telescope-server.onrender.com/auth/cart",
         {
           headers: {
             accessToken: localStorage.getItem("accessToken"),
