@@ -55,14 +55,14 @@ export const ShopProvider = ({ children }) => {
           },
         }
       );
-      //setCartItems([...cartItems, item]);
+      setCartItems(prevItems => [...prevItems, { ...item, quantity: 1 }]); // Ensure you structure the new item correctly
       toast.success("Added to cart successfully!");
     } catch (error) {
       console.error("There was an error!", error);
-      //throw error; // Rethrow the error to handle it in the calling function
       toast.error("There was an error adding to cart!");
     }
   };
+
 
   const removeFromCart = async (item) => {
     try {
@@ -94,14 +94,16 @@ export const ShopProvider = ({ children }) => {
       );
       setCartItems((prevCartItems) =>
         prevCartItems.map((item) =>
-          item.id === productId ? { ...item, quantity: newQuantity } : item
+          item.productId === productId ? { ...item, quantity: newQuantity } : item
         )
       );
-      fetchCartItems();
+      // Optionally, fetchCartItems here if it's crucial to confirm the server's state is matched.
     } catch (error) {
       console.error("There was an error!", error);
+      // Optionally revert the optimistic update here if needed.
     }
   };
+
 
   // clear the cart
   const clearCart = async () => {

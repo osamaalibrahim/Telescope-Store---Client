@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useMemo } from "react";
 import { useShop } from "../contexts/ShopContext";
 import { Box, Stack, Heading, Flex, HStack, Link } from "@chakra-ui/react";
 import { CartItem } from "../components/CartItem";
@@ -26,16 +26,24 @@ function Cart() {
     updateData();
   }, []);
 
-  const productsInCart = cartItems.map((item) => {
-    const product = products.find((product) => product.id === item.productId);
-    return {
-      ...product,
-      quantity: item.quantity, // Corrected typo here
-      onClickDelete: () => removeFromCart(item),
-      onChangeQuantity: (newQuantity) =>
-        updateQuantity(product.id, newQuantity),
-    };
-  });
+  const sortedCartItems = useMemo(() => {
+    return [...cartItems].sort((a, b) => a.id - b.id);
+  }, [cartItems]);
+  
+  const productsInCart = useMemo(() => {
+    return sortedCartItems.map((item) => {
+      const product = products.find((product) => product.id === item.productId);
+      return {
+        ...product,
+        quantity: item.quantity,
+        onClickDelete: () => removeFromCart(item),
+        onChangeQuantity: (newQuantity) => updateQuantity(product.id, newQuantity),
+      };
+    });
+  }, [sortedCartItems, products, removeFromCart, updateQuantity]);
+
+
+  
 
   const totalPrice = productsInCart
     .reduce((total, product) => total + product.price * product.quantity, 0)
