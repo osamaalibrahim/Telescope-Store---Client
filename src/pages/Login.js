@@ -7,7 +7,7 @@ import { Container } from "@chakra-ui/react";
 import { useAuth } from "../contexts/AuthContext";
 
 function Login() {
-  const api = "http://localhost:3001";
+  const api = "https://telescope-server.onrender.com";
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");

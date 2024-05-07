@@ -17,7 +17,7 @@ import {
 import { motion } from "framer-motion";
 
 function Support() {
-  const api = "http://localhost:3001";
+  const api = "https://telescope-server.onrender.com";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
